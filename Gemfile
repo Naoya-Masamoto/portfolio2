@@ -38,6 +38,12 @@ gem 'omniauth-twitter'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 
+#画像アップロード用
+gem 'carrierwave'
+
+#画像加工用
+gem 'mini_magick'
+
 #環境変数管理用
 gem 'dotenv-rails'
 

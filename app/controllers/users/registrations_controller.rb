@@ -2,7 +2,7 @@
 
 class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
-  # before_action :configure_account_update_params, only: [:update]
+  before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   # def new
@@ -59,4 +59,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  protected
+
+  def update_resource(resource, params)
+    resource.update_without_current_password(params)
+  end
+
+  #update後にtop画面にリダイレクトするメソッド
+  def after_update_path_for(_resource)
+    profile_path
+  end
+
+  
+  def configure_account_update_params
+    devise_parameter_sanitizer.permit(:account_update,  keys: [:username, :profile, :profile_image, :guitar_name, :password, :encrypted_password])
+  end
+
 end
