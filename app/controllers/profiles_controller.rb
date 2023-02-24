@@ -1,11 +1,7 @@
 class ProfilesController < ApplicationController
-  before_action :set_user, only: %i[show]
+  before_action :authenticate_user!
 
-  def show; end
-
-  private
-
-  def set_user
+  def show
     @user = User.find(current_user.id)
   end
 end
