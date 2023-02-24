@@ -1,0 +1,16 @@
+<h1>プロフィール</h1>
+
+<% if @user.profile_image? %>
+  <%= image_tag @user.profile_image.url, size: "100x100" %>
+<% else %>
+  <%= image_tag "default.png", size: "100x100" %>
+<% end %>
+
+<h3>ユーザー名</h3>
+<%= @user.username %>
+<h3>メインギター</h3>
+<%= @user.guitar_name %>
+<h3>プロフィール</h3>
+<%= @user.profile %>
+<h3>メールアドレス</h3>
+<%= @user.email %>
