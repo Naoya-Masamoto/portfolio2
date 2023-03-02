@@ -10,7 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_17_154037) do
+ActiveRecord::Schema.define(version: 2023_02_27_052803) do
+
+  create_table "brands", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "colors", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "body", null: false
+    t.string "img"
+    t.string "video"
+    t.integer "user_id", null: false
+    t.integer "brand_id", null: false
+    t.integer "color_id", null: false
+    t.integer "shape_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["brand_id"], name: "index_posts_on_brand_id"
+    t.index ["color_id"], name: "index_posts_on_color_id"
+    t.index ["shape_id"], name: "index_posts_on_shape_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "shapes", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
@@ -30,4 +66,8 @@ ActiveRecord::Schema.define(version: 2023_02_17_154037) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "posts", "brands"
+  add_foreign_key "posts", "colors"
+  add_foreign_key "posts", "shapes"
+  add_foreign_key "posts", "users"
 end

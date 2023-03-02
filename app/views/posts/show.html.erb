@@ -1,0 +1,26 @@
+<h1>投稿詳細</h1>
+
+<h2>タイトル:<%= @post.title %></h2>
+
+<h2>投稿者:<% if current_user == @post.user %>
+            <%= link_to @post.user.username, profile_path %>
+          <% else %>
+            <%= link_to @post.user.username, user_path(@post.user.id) %>
+          <% end %>
+</h2>
+
+<p>ブランド名:<%= @post.brand.name %></p>
+
+<p>ギターシェイプ:<%= @post.shape.name %></p>
+
+<p>カラー：<%= @post.color.name %></p>
+
+<p>本文</p></br>
+<p><%= @post.body %></p>
+
+<%= image_tag @post.img.url, :size =>'350x170' %>
+
+<%= video_tag @post.video.url, autoplay: false, muted: false, controls:true, :size =>'350x170' %><br>
+
+<%= edit_post_link(@post) %><br>
+<%= delete_post_link(@post) %>
