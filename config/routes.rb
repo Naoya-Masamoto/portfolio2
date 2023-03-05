@@ -1,3 +1,14 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  root 'posts#index'
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    # Twitter & Google認証用
+    :omniauth_callbacks => 'users/omniauth_callbacks',
+  }
+  
+  resources :users, only: %i[show]
+  resource :profile, only: %i[show]
+
+  resources :posts
 end
