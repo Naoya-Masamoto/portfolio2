@@ -18,9 +18,13 @@
 <p>本文</p></br>
 <p><%= @post.body %></p>
 
-<%= image_tag @post.img.url, :size =>'350x170' %>
+<%if @post.img? %>
+  <%= image_tag @post.img.url, :size =>'350x170' %>
+<% end %>
 
-<%= video_tag @post.video.url, autoplay: false, muted: false, controls:true, :size =>'350x170' %><br>
+<%if @post.video? %>
+  <%= video_tag @post.video.url, autoplay: false, muted: false, controls:true, :size =>'350x170' %><br>
+<% end %>
 
 <%= edit_post_link(@post) %><br>
 <%= delete_post_link(@post) %>

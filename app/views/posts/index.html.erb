@@ -1,5 +1,5 @@
 <% @posts.each do |post| %>
-  <a href="<%= post_path(post) %>">
+  <%= link_to post_path(post) do %>
     <div class="post">
       <h2><%= post.title %></h2>
 
@@ -11,5 +11,5 @@
 
       <p>カラー：<%= post.color.name %></p>
     </div>
-  </a>
+  <% end %>
 <% end %>
