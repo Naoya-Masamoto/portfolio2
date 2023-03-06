@@ -4,5 +4,5 @@
     <%= form.submit "コメント" %>
   <% end %>
 <% else %>
-  <strong><p>コメントの投稿には新規登録/ログインが必要です</p></strong>
+  <strong><%= link_to "コメントの投稿には新規登録", new_user_registration_path %>/<%= link_to "ログインが必要です", new_user_session_path %></strong>
 <% end %>

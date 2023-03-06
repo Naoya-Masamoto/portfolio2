@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[show]
   resource :profile, only: %i[show]
 
-  resources :posts
+  resources :posts do
+    resources :comments, only: %i[create destroy]
+  end
 end
