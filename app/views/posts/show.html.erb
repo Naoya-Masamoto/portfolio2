@@ -28,3 +28,9 @@
 
 <%= edit_post_link(@post) %><br>
 <%= delete_post_link(@post) %>
+
+<!-- コメントフォーム -->
+<%= render "comments/form", { post: @post, comment: @comment } %>
+
+<!-- コメントエリア -->
+<%= render 'comments/comments', { comments: @comments } %>

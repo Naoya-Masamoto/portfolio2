@@ -4,6 +4,8 @@ class Post < ApplicationRecord
   belongs_to :color
   belongs_to :shape
 
+  has_many :comments, dependent: :destroy
+
   mount_uploader :img, ImageUploader
   mount_uploader :video, VideoUploader
 

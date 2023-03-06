@@ -1,0 +1,8 @@
+<% if user_signed_in? %>
+  <%= form_with model: [@post, @comment], local: true do |form| %>
+    <%= form.text_area :body, placeholder: "コメントする", rows: "2" %></br>
+    <%= form.submit "コメント" %>
+  <% end %>
+<% else %>
+  <strong><p>コメントの投稿には新規登録/ログインが必要です</p></strong>
+<% end %>
