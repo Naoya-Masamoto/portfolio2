@@ -1,0 +1,16 @@
+<h4>＜コメント一覧＞</h4>
+<% @comments.each do |comment| %>
+  <p>
+    <strong>
+      <% if current_user == comment.user %>
+        <%= link_to comment.user.username, profile_path %>
+      <% else %>
+        <%= link_to comment.user.username, user_path(comment.user.id) %>
+      <% end %>
+    </strong>
+    <%= comment.body %>
+    <% if user_signed_in? && current_user.id == comment.user_id %>
+      <%= link_to "削除", post_comment_path(comment.post.id, comment.id), method: :delete %>
+    <% end %>
+  </p>
+<% end %>
