@@ -12,6 +12,4 @@ import "channels"
 import "jquery";
 
 require("rails-ujs").start()
-require("jquery")
-
-
+//require("jquery")

@@ -2,6 +2,12 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :users
+  has_many :posts, dependent: :destroy
+  
+  #お気に入り用
+  has_many :likes, dependent: :destroy
+  has_many :like_posts, through: :likes, source: :post
+
   has_many :comments, dependent: :destroy
   
   mount_uploader :profile_image, ImageUploader
@@ -38,7 +44,6 @@ class User < ApplicationRecord
       password: Devise.friendly_token[0, 20]
     )
     user
-    #p auth
   end
 
   #ダミーのメールアドレスを作成

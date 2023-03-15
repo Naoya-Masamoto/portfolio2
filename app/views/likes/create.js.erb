@@ -1,0 +1,2 @@
+$('.post-like').
+html('<%= link_to "保存済み", post_like_path(@post,@post.liked_by(current_user)), method: :delete, remote: true, class: "btn btn-outline-success btn-sm" %>');
