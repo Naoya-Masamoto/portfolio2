@@ -16,6 +16,10 @@ class Post < ApplicationRecord
 
   #お気に入りのためのメソッド
   def liked_by(user)
-    Like.find_by(user_id: user.id, post_id: id)
+    if user.present?
+      Like.find_by(user_id: user.id, post_id: id)
+    else
+      nil
+    end
   end
 end

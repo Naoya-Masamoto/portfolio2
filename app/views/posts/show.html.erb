@@ -35,12 +35,5 @@
 <!-- コメントエリア -->
 <%= render 'comments/comments', { comments: @comments } %>
 
-<% if current_user != @post.user %>
-  <div class="post-like">
-    <% if @post.liked_by(current_user).blank? %>
-      <%= link_to "お気に入りに保存", post_likes_path(@post), method: :post, remote: true, class: "btn btn-success btn-sm" %>
-    <% else %>
-      <%= link_to "保存済み", post_like_path(@post,@post.liked_by(current_user)), method: :delete, remote: true, class: "btn btn-outline-success btn-sm" %>
-    <% end %>
-  </div>
-<% end %>
+<!-- お気に入り -->
+<%= render 'likes/like_area', { post: @post } %>
