@@ -1,0 +1,17 @@
+<h2>お気に入りした投稿</h2>
+
+<% @liked_posts.each do |post| %>
+  <%= link_to post_path(post) do %>
+    <div class="post">
+      <h2><%= post.title %></h2>
+
+      <p>投稿者<%= post.user.username %></p>
+      
+      <p>ブランド名:<%= post.brand.name %></p>
+
+      <p>ギターシェイプ:<%= post.shape.name %></p>
+
+      <p>カラー：<%= post.color.name %></p>
+    </div>
+  <% end %>
+<% end %>

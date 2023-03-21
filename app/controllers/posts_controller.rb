@@ -45,10 +45,6 @@ class PostsController < ApplicationController
       redirect_to root_path
     end
   end
-
-  def likes
-    @like_posts = current_user.like_posts.includes(:user).order(created_at: :desc)
-  end
   
   private
 
