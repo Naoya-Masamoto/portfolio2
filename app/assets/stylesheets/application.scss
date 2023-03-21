@@ -23,16 +23,16 @@
  .star {
    font-size: 20px;
    color: #999;
-   }
+ }
    
-   .star.active {
+ .star.active {
    color: #f1c40f;
-   }
+ }
    
-   .star:before {
+ .star:before {
    content: "\2606";
-   }
+ }
    
-   .star.active:before {
+ .star.active:before {
    content: "\2605";
-   }
+ }
