@@ -17,9 +17,16 @@
 
   <div class="field">
     <%= f.label :カラー %></br>
-    <%= f.collection_select :color_id, Color.all, :id, :name, {:include_blank => 'カラー選択'} %>
+    <div class="color-selector">
+      <% Color.all.each do |color| %>
+        <label>
+          <%= f.radio_button :color_id, color.id, checked: (@post.color_id == color.id) %>
+          <%= color_icon_url(color.code) %>
+          <%= color.name %>
+        </label>
+      <% end %>
+    </div>
   </div>
-
 
   <div class="field">
     <%= f.label :画像 %></br>

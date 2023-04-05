@@ -36,3 +36,12 @@
  .star.active:before {
    content: "\2605";
  }
+
+ .color-icon {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 1px solid #ddd;
+  margin-right: 2px;
+ }
