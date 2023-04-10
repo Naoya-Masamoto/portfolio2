@@ -10,4 +10,7 @@
   <tr>
     <td><%= link_to user.username, user_path(user) %></td>
   </tr>
+  <tr>
+    <%= render "users/follow_form", user: @user %>
+  </tr>
 <% end %>

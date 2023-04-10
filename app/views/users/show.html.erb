@@ -8,7 +8,11 @@
 
 <div class="follower">
 	<%= link_to followers_user_path(@user.id) do %>
-		<h5 style="color: black;">フォロワー<%= @user.followers.count %>人</h5>
+		<h5 style="color: black;">
+		  <p id="follow_count">
+  		    <%= render "users/follow_count", user: @user %>
+          </p>
+		</h5>
 	<% end %>
 </div>
 <div class="follow">
@@ -26,8 +30,3 @@
 <%= @user.guitar_name %>
 <h3>プロフィール</h3>
 <%= @user.profile %>
-
-
-<td id="follow_count">
-  <%= render "users/follow_count", user: @user %>
-</td>
