@@ -7,7 +7,14 @@ Rails.application.routes.draw do
     :omniauth_callbacks => 'users/omniauth_callbacks',
   }
   
-  resources :users, only: %i[show]
+  resources :users, only: %i[show] do
+    member do
+      get :followings, :followers
+    end
+  end
+  
+  resources :relationships, only: [:create, :destroy]
+
   resource :profile, only: %i[show]
   get 'profile/:id/liked_posts', to: 'users#liked_posts', as: 'profile_liked_posts'
 

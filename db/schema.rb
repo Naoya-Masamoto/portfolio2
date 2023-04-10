@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_07_073152) do
+ActiveRecord::Schema.define(version: 2023_04_07_135105) do
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
@@ -59,6 +59,14 @@ ActiveRecord::Schema.define(version: 2023_03_07_073152) do
     t.index ["color_id"], name: "index_posts_on_color_id"
     t.index ["shape_id"], name: "index_posts_on_shape_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "following_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["follower_id", "following_id"], name: "index_relationships_on_follower_id_and_following_id", unique: true
   end
 
   create_table "shapes", force: :cascade do |t|

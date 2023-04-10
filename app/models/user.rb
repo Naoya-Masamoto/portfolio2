@@ -8,6 +8,13 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :like_posts, through: :likes, source: :post
 
+  #フォロー用
+  has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship",  dependent: :destroy
+  has_many :following, through: :following_relationships
+  has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
+  has_many :followers, through: :follower_relationships
+
+
   has_many :comments, dependent: :destroy
   
   mount_uploader :profile_image, ImageUploader
@@ -50,4 +57,21 @@ class User < ApplicationRecord
   def self.dummy_email(auth)
     "#{Time.now.strftime('%Y%m%d%H%M%S').to_i}-#{auth.uid}-#{auth.provider}@example.com"
   end
+
+  #フォローしているかを確認するメソッド
+  def following?(user)
+  user.present? && following_relationships&.find_by(following_id: user.id).present?
 end
+
+  #フォローするときのメソッド
+  def follow(user)
+    following_relationships.create!(following_id: user.id)
+  end
+
+  #フォローを外すときのメソッド
+  def unfollow(user)
+    following_relationships.find_by(following_id: user.id).destroy
+  end
+end
+
+

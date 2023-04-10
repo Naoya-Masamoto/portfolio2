@@ -6,9 +6,28 @@
   <%= image_tag "default.png", size: "100x100" %>
 <% end %>
 
+<div class="follower">
+	<%= link_to followers_user_path(@user.id) do %>
+		<h5 style="color: black;">フォロワー<%= @user.followers.count %>人</h5>
+	<% end %>
+</div>
+<div class="follow">
+	<%= link_to followings_user_path(@user.id) do %>
+		<h5 style="color: black;">フォロー<%= @user.following.count %>人</h5>
+	<% end %>
+</div>
+<div>
+	<%= render "follow_form" %>
+</div>
+
 <h3>ユーザー名</h3>
 <%= @user.username %>
 <h3>メインギター</h3>
 <%= @user.guitar_name %>
 <h3>プロフィール</h3>
 <%= @user.profile %>
+
+
+<td id="follow_count">
+  <%= render "users/follow_count", user: @user %>
+</td>

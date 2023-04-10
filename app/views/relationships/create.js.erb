@@ -1,0 +1,2 @@
+$('#follow_form').html("<%= j render partial: 'users/unfollow', locals: { user: @user } %>");
+$("#follow_count").html("<%= j(render 'users/follow_count', user: @user) %>");

@@ -1,0 +1,13 @@
+<h1>フォロワー一覧</h1><br/>
+<% @users.each do |user| %>
+  <tr>
+    <% if user.profile_image? %>
+      <%= image_tag @user.profile_image.url, size: "20x20" %>
+    <% else %>
+      <%= image_tag "default.png", size: "20x20" %>
+    <% end %>
+  </tr>
+  <tr>
+    <td><%= link_to user.username, user_path(user) %></td>
+  </tr>
+<% end %>
