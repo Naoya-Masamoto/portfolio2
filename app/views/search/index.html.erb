@@ -1,0 +1,30 @@
+<h1>「<%= @q %>」の検索結果</h1>
+
+<%= render partial: "search/search_form" %>
+
+<% if @search_results.present? %>
+  <% @search_results.each do |result| %>
+    <% if result.is_a?(User) %>
+      <h2>ユーザー検索結果</h2>
+      <% if current_user && current_user == result %>
+        <% if result.profile_image? %>
+          <%= link_to image_tag(result.profile_image_url, size: "20x20"), profile_path %>
+        <% else %>
+          <%= link_to image_tag("default.png", size: "20x20"), profile_path %>
+        <% end %>
+        <%= link_to result.username, profile_path %>
+      <% else %>
+        <% if result.profile_image? %>
+          <%= link_to image_tag(result.profile_image_url, size: "20x20"), user_path(result) %>
+        <% else %>
+          <%= link_to image_tag("default.png", size: "20x20"), user_path(result) %>
+        <% end %>
+        <%= link_to result.username, user_path(result) %>
+      <% end %>
+    <% else %>
+      <%= link_to result.title, post_path(result) %>
+    <% end %>
+  <% end %>
+<% else %>
+  <p>検索結果がありません。</p>
+<% end %>

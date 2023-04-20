@@ -45,3 +45,27 @@
   border: 1px solid #ddd;
   margin-right: 2px;
  }
+
+ .content {
+  width: 80%;
+ }
+ 
+ .side-menu {
+  text-align: center;
+  min-height: 100vh;
+  height: 100%;
+  width: 220px;
+  float: right;
+  background-color: #c0d6ff;
+ }
+
+ .card-body {
+  text-align: center;
+  border: 1px solid #000; 
+  background-color: #fff;
+  padding: 10px;
+  margin: 10px;
+ }
+
+
+  

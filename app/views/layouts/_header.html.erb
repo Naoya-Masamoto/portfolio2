@@ -1,5 +1,7 @@
 <header>
   <nav>
+      <%= link_to "トップページ", root_path  %>
+      <%= link_to "投稿カテゴリー一覧", categories_path %>
       <% if user_signed_in? %>
         <strong><%= link_to current_user.username, profile_path %></strong>
         <%= link_to 'プロフィール変更', edit_user_registration_path %>

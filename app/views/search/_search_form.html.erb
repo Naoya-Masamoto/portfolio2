@@ -1,0 +1,6 @@
+<%= form_with(url: search_path, method: :get) do |form| %>
+  <%= form.label :"" %>
+  <%= form.text_field :q, value: @q, placeholder: "キーワード検索" %>
+
+  <%= form.submit "検索" %>
+<% end %>

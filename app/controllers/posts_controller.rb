@@ -12,6 +12,24 @@ class PostsController < ApplicationController
     @user = @post.user
   end
 
+  def brand
+    @brand = Brand.find(params[:id]) #ここでクリックしたカテゴリIDを取得
+    #@post = Post.includes(:brands).where(post_brand_relations: { brand_id: @brand })
+    @posts = @brand.post.order(created_at: :desc)
+  end
+
+  def shape
+    @shape = Shape.find(params[:id]) 
+    #@post = Post.includes(:shapes).where(post_shape_relations: { shape_id: @shape })
+    @posts = @shape.post.order(created_at: :desc)
+  end
+
+  def color
+    @color = Color.find(params[:id]) 
+    #@post = Post.includes(:colors).where(post_colors_relations: { color_id: @color })
+    @posts = @color.post.order(created_at: :desc)
+  end
+
   def new
     @post = Post.new
   end

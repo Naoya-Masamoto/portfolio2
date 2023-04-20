@@ -1,0 +1,25 @@
+<div class="side-menu">
+  <%= render "search/search_form" %>
+  
+  <div class="card-body">
+    <p>ブランド別</p>
+    <% @brands.sample(10).each do |brand| %>
+      <%= link_to brand.name, controller: :posts, action: :brand, id: brand.id %>
+    <% end %>
+  </div>
+
+  <div class="card-body">
+    <p>シェイプ別</p> 
+    <% @shapes.sample(10).each do |shape| %>
+      <%= link_to shape.name, controller: :posts, action: :shape, id:shape.id %>
+    <% end %>
+  </div>
+
+  <div class="card-body">
+    <p>カラー別</p> 
+    <% @colors.each do |color| %>
+      <%= link_to color_icon_url(color.code), controller: :posts, action: :color, id:color.id %>
+    <% end %>
+  </div>
+</div>
+s

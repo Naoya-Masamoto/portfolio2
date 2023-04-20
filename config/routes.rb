@@ -23,4 +23,15 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
   end
 
+  #カテゴリー全表示のやつ
+  get 'categories', to: 'categories#index'
+
+  #カテゴリー別の表示のやつ↓
+  get 'posts/brand/:id', to: 'posts#brand'
+  get 'posts/shape/:id', to: 'posts#shape'
+  get 'posts/color/:id', to: 'posts#color'
+
+  #↓検索機能のためのルーティング
+  get '/search', to: 'search#index'
+
 end

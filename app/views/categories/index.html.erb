@@ -1,0 +1,25 @@
+<h1>Categories#index</h1>
+
+<%= render "search/search_form" %>
+<div class="card-body">
+  <% @brands.each do |initial, brand| %>
+    <h2><%= initial %></h2>
+      <% brand.each do |brand| %>
+        <li><%= link_to brand.name, controller: :posts, action: :brand, id:brand.id %></li>
+      <% end %>
+  <% end %>
+</div>
+
+<div class="card-body">
+    <p>シェイプ別</p> 
+    <% @shapes.each do |shape| %>
+      <%= link_to shape.name, controller: :posts, action: :shape, id:shape.id %>
+    <% end %>
+</div>
+
+<div class="card-body">
+    <p>カラー別</p> 
+    <% @colors.each do |color| %>
+      <%= link_to color_icon_url(color.code), controller: :posts, action: :color, id:color.id %>
+    <% end %>
+</div>
