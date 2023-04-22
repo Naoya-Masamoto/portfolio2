@@ -6,21 +6,10 @@
   <% @search_results.each do |result| %>
     <% if result.is_a?(User) %>
       <h2>ユーザー検索結果</h2>
-      <% if current_user && current_user == result %>
-        <% if result.profile_image? %>
-          <%= link_to image_tag(result.profile_image_url, size: "20x20"), profile_path %>
-        <% else %>
-          <%= link_to image_tag("default.png", size: "20x20"), profile_path %>
-        <% end %>
-        <%= link_to result.username, profile_path %>
-      <% else %>
-        <% if result.profile_image? %>
-          <%= link_to image_tag(result.profile_image_url, size: "20x20"), user_path(result) %>
-        <% else %>
-          <%= link_to image_tag("default.png", size: "20x20"), user_path(result) %>
-        <% end %>
-        <%= link_to result.username, user_path(result) %>
-      <% end %>
+      <% img = result.profile_image? ? result.profile_image_url : "default.png" %>
+      <% link = current_user && current_user == result ? profile_path : user_path(result) %>
+      <%= link_to image_tag(img, size: "20x20"), link %>
+      <%= link_to result.username, link %>
     <% else %>
       <%= link_to result.title, post_path(result) %>
     <% end %>

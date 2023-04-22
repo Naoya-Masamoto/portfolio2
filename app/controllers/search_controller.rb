@@ -1,4 +1,5 @@
 class SearchController < ApplicationController
+
   def index
     @q = params[:q]
     if @q.present?
