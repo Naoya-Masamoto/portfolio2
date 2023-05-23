@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_07_135105) do
+ActiveRecord::Schema.define(version: 2023_04_28_162407) do
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
@@ -93,6 +93,28 @@ ActiveRecord::Schema.define(version: 2023_04_07_135105) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "vote_histories", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.string "vote_type", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_vote_histories_on_post_id"
+    t.index ["user_id"], name: "index_vote_histories_on_user_id"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "cool"
+    t.integer "cute"
+    t.integer "tasteful"
+    t.integer "beautiful"
+    t.integer "good_sense"
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_votes_on_post_id"
+  end
+
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
@@ -101,4 +123,7 @@ ActiveRecord::Schema.define(version: 2023_04_07_135105) do
   add_foreign_key "posts", "colors"
   add_foreign_key "posts", "shapes"
   add_foreign_key "posts", "users"
+  add_foreign_key "vote_histories", "posts"
+  add_foreign_key "vote_histories", "users"
+  add_foreign_key "votes", "posts"
 end

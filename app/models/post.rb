@@ -7,6 +7,9 @@ class Post < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :comments, dependent: :destroy
 
+  #投票用のやつ
+  has_many :vote_histories, dependent: :destroy
+
   mount_uploader :img, ImageUploader
   mount_uploader :video, VideoUploader
 

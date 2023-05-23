@@ -16,6 +16,9 @@ class User < ApplicationRecord
 
 
   has_many :comments, dependent: :destroy
+
+  #投票用
+  has_many :vote_histories, dependent: :destroy
   
   mount_uploader :profile_image, ImageUploader
 

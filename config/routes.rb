@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments, only: %i[create destroy]
-    resources :likes, only: [:create, :destroy]
+    resources :likes, only: %i[create destroy]
+    #↓投票機能
+    resources :vote_histories, only: %i[create destroy]
   end
 
   #カテゴリー全表示のやつ

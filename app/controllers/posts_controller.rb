@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+
   
   def index
     @posts = Post.all.order(created_at: :desc)
@@ -10,6 +11,13 @@ class PostsController < ApplicationController
     @comment = Comment.new
     @comments = @post.comments.includes(:user)
     @user = @post.user
+    
+    #↓投票数のカウント
+    @cool_count = @post.vote_histories.where(vote_type: "cool").count
+    @cute_count = @post.vote_histories.where(vote_type: "cute").count
+    @tasteful_count = @post.vote_histories.where(vote_type: "tasteful").count
+    @beautiful_count = @post.vote_histories.where(vote_type: "beautiful").count
+    @good_sense_count = @post.vote_histories.where(vote_type: "good_sense").count
   end
 
   def brand

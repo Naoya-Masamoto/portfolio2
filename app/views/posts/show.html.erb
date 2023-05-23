@@ -28,8 +28,111 @@
   <%= video_tag @post.video.url, autoplay: false, muted: false, controls:true, :size =>'350x170' %><br>
 <% end %>
 
+<!--------------- 投票のグラフ --------------->
+
+<div class="chart-container">
+  <canvas id="myChart"></canvas>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  var ctx = document.getElementById('myChart');
+  var coolCount = <%= @cool_count %>;
+  var cuteCount = <%= @cute_count %>;
+  var tastefulCount = <%= @tasteful_count %>;
+  var beautifulCount = <%= @beautiful_count %>;
+  var goodSenseCount = <%= @good_sense_count %>;
+  var totalVotes = coolCount + cuteCount + tastefulCount + beautifulCount + goodSenseCount;
+  var myChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: ['かっこいい！', 'かわいい！', '渋い', '美しい！', 'センス抜群！'],
+      datasets: [{
+        label: '投票結果',
+        data: [
+          (coolCount / totalVotes * 100).toFixed(2),
+          (cuteCount / totalVotes * 100).toFixed(2),
+          (tastefulCount / totalVotes * 100).toFixed(2),
+          (beautifulCount / totalVotes * 100).toFixed(2),
+          (goodSenseCount / totalVotes * 100).toFixed(2)
+        ],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 192, 203, 0.2)',
+          'rgba(139, 69, 19, 0.2)',
+          'rgba(135, 206, 235, 0.2)', 
+          'rgba(153, 102, 255, 0.2)'  
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(255, 192, 203, 1)',
+          'rgba(139, 69, 19, 1)',
+          'rgba(135, 206, 235, 1)',
+          'rgba(153, 102, 255, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        r: {
+          min: 0,
+          max: 100,
+          beginAtZero: true,
+          ticks: {
+            stepSize: 25,
+            callback: function(value) {
+              return value + '%';
+            },
+            maxTicksLimit: 5
+          }
+        }
+      }
+    }
+  });
+</script>
+
+<!--------------- ここまで投票のグラフ --------------->
+<!--------------- 投票フォーム --------------->
+
+<% unless current_user && current_user == @post.user %>
+  <%= form_with model: [@post, VoteHistory.new], url: post_vote_histories_path(@post), method: :post, local: true do |f| %>
+    <%= f.hidden_field :vote_type, value: 'cool' %>
+    <%= f.submit 'かっこいい！' %>
+  <% end %>
+
+
+  <%= form_with model: [@post, VoteHistory.new], url: post_vote_histories_path(@post), method: :post, local: true do |f| %>
+    <%= f.hidden_field :vote_type, value: 'cute' %>
+    <%= f.submit 'かわいい！' %>
+  <% end %>
+
+
+  <%= form_with model: [@post, VoteHistory.new], url: post_vote_histories_path(@post), method: :post, local: true do |f| %>
+    <%= f.hidden_field :vote_type, value: 'tasteful' %>
+    <%= f.submit '渋い！' %>
+  <% end %>
+
+  <%= form_with model: [@post, VoteHistory.new], url: post_vote_histories_path(@post), method: :post, local: true do |f| %>
+    <%= f.hidden_field :vote_type, value: 'beautiful' %>
+    <%= f.submit '美しい！' %>
+  <% end %>
+
+  <%= form_with model: [@post, VoteHistory.new], url: post_vote_histories_path(@post), method: :post, local: true do |f| %>
+    <%= f.hidden_field :vote_type, value: 'good_sense' %>
+    <%= f.submit 'センス抜群！' %>
+  <% end %>
+
+  <% if current_user && current_user.vote_histories.exists?(post: @post) %>
+    <% vote_history = current_user.vote_histories.find_by(post: @post) %>
+    <%= link_to "投票を取り消す", post_vote_history_path(@post, vote_history), method: :delete, data: { confirm: '本当に取り消しますか？' } %>
+  <% end %>
+<% end %>
+
+<!--------------- ここまで投票フォーム --------------->
+
 <%= edit_post_link(@post) %><br>
 <%= delete_post_link(@post) %>
+
 
 <!-- コメントフォーム -->
 <%= render "comments/form", { post: @post, comment: @comment } %>
