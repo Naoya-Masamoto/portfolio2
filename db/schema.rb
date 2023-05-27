@@ -103,18 +103,6 @@ ActiveRecord::Schema.define(version: 2023_04_28_162407) do
     t.index ["user_id"], name: "index_vote_histories_on_user_id"
   end
 
-  create_table "votes", force: :cascade do |t|
-    t.integer "cool"
-    t.integer "cute"
-    t.integer "tasteful"
-    t.integer "beautiful"
-    t.integer "good_sense"
-    t.integer "post_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["post_id"], name: "index_votes_on_post_id"
-  end
-
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
@@ -125,5 +113,4 @@ ActiveRecord::Schema.define(version: 2023_04_28_162407) do
   add_foreign_key "posts", "users"
   add_foreign_key "vote_histories", "posts"
   add_foreign_key "vote_histories", "users"
-  add_foreign_key "votes", "posts"
 end

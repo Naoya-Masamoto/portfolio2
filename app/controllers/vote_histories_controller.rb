@@ -4,8 +4,6 @@ class VoteHistoriesController < ApplicationController
   
   def create
     @vote_history = VoteHistory.new(vote_params)
-    @vote_history.post = @post
-    @vote_history.user = current_user
     if @vote_history.save
       redirect_to @post, notice: '投票しました'
     else
@@ -29,7 +27,7 @@ class VoteHistoriesController < ApplicationController
   end
 
   def vote_params
-    params.require(:vote_history).permit(:vote_type)
+    params.require(:vote_history).permit(:vote_type).merge(post: @post, user: current_user)
   end
 
 end

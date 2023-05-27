@@ -35,14 +35,14 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-  var ctx = document.getElementById('myChart');
-  var coolCount = <%= @cool_count %>;
-  var cuteCount = <%= @cute_count %>;
-  var tastefulCount = <%= @tasteful_count %>;
-  var beautifulCount = <%= @beautiful_count %>;
-  var goodSenseCount = <%= @good_sense_count %>;
-  var totalVotes = coolCount + cuteCount + tastefulCount + beautifulCount + goodSenseCount;
-  var myChart = new Chart(ctx, {
+  let ctx = document.getElementById('myChart');
+  let coolCount = <%= @cool_count %>;
+  let cuteCount = <%= @cute_count %>;
+  let tastefulCount = <%= @tasteful_count %>;
+  let beautifulCount = <%= @beautiful_count %>;
+  let goodSenseCount = <%= @good_sense_count %>;
+  let totalVotes = coolCount + cuteCount + tastefulCount + beautifulCount + goodSenseCount;
+  let myChart = new Chart(ctx, {
     type: 'radar',
     data: {
       labels: ['かっこいい！', 'かわいい！', '渋い', '美しい！', 'センス抜群！'],
