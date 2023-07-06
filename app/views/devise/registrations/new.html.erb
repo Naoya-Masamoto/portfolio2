@@ -1,31 +1,39 @@
-<h2>ユーザー登録</h2>
+<div class="container sign_in">
+    <div class"left-side">
+    </div>
 
-<%= form_with model: @user, url: user_registration_path, local: true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="right-side">
+      <form>
+        <h2>ユーザー登録</h2>
 
-  <div class="field">
-    <%= f.label :ユーザーネーム %><br />
-    <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
-  </div>
+        <%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+          <div class="field">
+            <%= f.label :ユーザーネーム %><br />
+            <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :"パスワード(6文字以上)" %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+          <div class="field">
+            <%= f.label :メールアドレス %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :パスワード（確認） %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+          <div class="field">
+            <%= f.label :"パスワード(6文字以上)" %><br />
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
 
-  <div class="actions">
-    <%= f.submit "登録" %>
-  </div>
-<% end %>
+          <div class="field">
+            <%= f.label :パスワード（確認） %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
 
-<%= render "devise/shared/links" %>
+          <div class="actions">
+            <%= f.submit "登録" %>
+          </div>
+          <%= render "devise/shared/links" %>
+        <% end %>
+      </form>
+    </div>
+</div>

@@ -1,6 +1,6 @@
-<header>
-  <nav>
-      <%= link_to "トップページ", root_path  %>
+<header class="page-header">
+    <h2><%= link_to "トップページ", root_path  %></h2>
+    <nav>
       <%= link_to "投稿カテゴリー一覧", categories_path %>
       <% if user_signed_in? %>
         <strong><%= link_to current_user.username, profile_path %></strong>
@@ -11,5 +11,5 @@
         <%= link_to 'ユーザー登録', new_user_registration_path %>
         <%= link_to 'ログイン', new_user_session_path %>
       <% end %>
-  </nav>
+    </nav>
 </header>

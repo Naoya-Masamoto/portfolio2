@@ -1,6 +1,68 @@
  @import "font-awesome-sprockets";
  @import "font-awesome";
 
+ * {
+  margin: 0px;
+  padding: 0px;
+ }
+  
+
+ /* 全ページ共通項目 */
+ body {
+  margin: auto;
+  padding: auto;
+ }
+
+ /* ヘッダー */
+ .page-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  background-color: #c0d6ff;
+  width: 100%;
+ }
+
+ nav {
+  margin: 1rem;
+ }
+
+ .page-header h2 {
+  margin: 1rem;
+ }
+
+ /* 新規登録画面&ログインページ */
+ .container {
+  display: flex;
+  border-style: solid;
+  justify-content: space-between;
+ }
+
+ .left-side {
+  width: 50%;
+  border-style: solid;
+  background-image: url('24926173_m.jpg');
+ }
+ 
+ .left-side .image {
+  object-fit: cover;
+ }
+
+ .right-side { 
+  width: 50%;
+  border-style: solid;
+  position: relative;
+ }
+
+ form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+ }
+
+
  .post {
     border: 1px solid black;
     padding: 10px;
