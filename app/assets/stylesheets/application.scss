@@ -41,7 +41,8 @@
 
  .left-side {
   width: 50%;
-  background-image: url('24926173_m.jpg');
+  background: url('24926173_l.jpg') no-repeat 0 0 / cover;
+  height: 100vh;
  }
  
  .left-side .image {
@@ -61,6 +62,9 @@
   transform: translate(-50%, -50%);
  }
 
+ .field {
+  font-family: "Font Awesome 5 Free";
+ }
 
  .post {
     border: 1px solid black;

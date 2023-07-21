@@ -1,5 +1,5 @@
 <div class="container sign_in">
-    <div class"left-side">
+    <div class="left-side">
     </div>
 
     <div class="right-side">
@@ -11,22 +11,22 @@
 
           <div class="field">
             <%= f.label :ユーザーネーム %><br />
-            <%= f.text_field :username, autofocus: true, autocomplete: "username" %>
+            <%= f.text_field :username, autofocus: true, autocomplete: "username", placeholder: "&#xf002; ユーザー名" %>
           </div>
 
           <div class="field">
             <%= f.label :メールアドレス %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
           </div>
 
           <div class="field">
             <%= f.label :"パスワード(6文字以上)" %><br />
-            <%= f.password_field :password, autocomplete: "new-password" %>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder: "パスワード(6文字以上)" %>
           </div>
 
           <div class="field">
             <%= f.label :パスワード（確認） %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード(確認)" %>
           </div>
 
           <div class="actions">
